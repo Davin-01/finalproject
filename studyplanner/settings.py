@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt',
     'planapp',
-    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
@@ -49,54 +51,24 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+
 ]
 
-CORS_ALLOWED_ALL_ORIGINS = True
-
+# CORS_ALLOWED_ALL_ORIGINS = True
+#
 ROOT_URLCONF = 'studyplanner.urls'
-from django.db import models
-from django.contrib.auth.models import User
+# from django.db import models
+# from django.contrib.auth.models import User
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    )
+}
 
-# Create your models here.
-class Task(models.Model):
-    subject = models.CharField(max_length=100)
-    description = models.TextField()
-    start_date = models.DateField()
-    end_date = models.DateField()
-    priority = models.CharField(max_length=100, choices=[('High', 'High'), ('Medium', 'Medium'), ('Low', 'Low')])
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-    completed = models.BooleanField(default=False)
 
-    def __str__(self):
-        return f"{self.subject} - {self.priority}"
-
-#study session model
-class StudySession(models.Model):
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
-    session_date = models.DateTimeField()
-    duration = models.DurationField()
-    notes = models.TextField(null=True, blank=True)
-
-    def __str__(self):
-        return f"Session for {self.task.subject} on {self.session_date}"
-class Tasks(models.Model):
-    name = models.CharField(max_length=200)
-    day = models.CharField(max_length=20, choices=[
-        ('Monday', 'Monday'),
-        ('Tuesday', 'Tuesday'),
-        ('Wednesday', 'Wednesday'),
-        ('Thursday', 'Thursday'),
-        ('Friday', 'Friday'),
-        ('Saturday', 'Saturday'),
-        ('Sunday', 'Sunday'),
-    ])
-    time_slot = models.CharField(max_length=20)  # E.g., '8:00 - 9:00 AM'
-    description = models.TextField(blank=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"self.name"
 
 TEMPLATES = [
     {
@@ -120,22 +92,22 @@ WSGI_APPLICATION = 'studyplanner.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'study_planner_db',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'study_planner_db',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
 
 
 
