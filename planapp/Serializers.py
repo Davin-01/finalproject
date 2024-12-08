@@ -1,8 +1,10 @@
 from rest_framework import serializers
+from rest_framework.authtoken.admin import User
+
 from .models import *
 
 from rest_framework import serializers
-from .models import User, Plan
+from .models import  StudyPlan
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,7 +15,7 @@ class PlanSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
 
     class Meta:
-        model = Plan
-        fields = ['id', 'name', 'description', 'is_completed', 'deadline', 'archived', 'user']
+        model = StudyPlan
+        fields = '__all__'
 
 
