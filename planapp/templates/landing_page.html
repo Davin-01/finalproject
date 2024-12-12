@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}Welcome to Study Planner{% endblock %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'create-plan' %}">Create Plan</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% for plans in plans %}
+                <li><a href="{% url 'create-event' plan_id=plan.id %}">Create Events for {{ plan.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </nav>
+        <div class="hero">
+            <h1>Welcome to Your Study Planner</h1>
+            <p>Organize your study plans and achieve your goals effectively!</p>
+            <a href="{% url 'register' %}" class="cta-button">Get Started</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="features">
+            <h2>Features</h2>
+            <div class="feature">
+                <h3>Create Plans</h3>
+                <p>Easily create and manage your study plans.</p>
+            </div>
+            <div class="feature">
+                <h3>Set Deadlines</h3>
+                <p>Keep track of your deadlines and never miss a due date.</p>
+            </div>
+            <div class="feature">
+                <h3>Track Progress</h3>
+                <p>Monitor your progress and stay motivated.</p>
+            </div>
+        </section>
+        
+        <section class="testimonials">
+            <h2>What Our Users Say</h2>
+            <blockquote>
+                <p>This planner has changed my study habits for the better!</p>
+                <cite>- Sarah J.</cite>
+            </blockquote>
+            <blockquote>
+                <p>I love how easy it is to manage my assignments!</p>
+                <cite>- John D.</cite>
+            </blockquote>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Study Planner. All rights reserved.</p>
+    </footer>
+</body>
+</html>

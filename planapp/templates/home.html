@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Plans</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>My Plans</h1>
+    <a href="{% url 'create-plan' %}">Create New Plan</a>
+    <ul>
+        {% for plan in plans %}
+            <li>
+                <a href="{% url 'plan-detail' plan.id %}">{{ plan.name }}</a>
+                <a href="{% url 'edit-plan' plan.id %}">Edit</a>
+                <a href="{% url 'archive-plan' plan.id %}">Archive</a>
+            </li>
+        {% empty %}
+            <li>No plans available.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>

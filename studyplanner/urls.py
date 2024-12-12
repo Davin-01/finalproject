@@ -18,11 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.http import HttpResponse
 
-def root_view(request):
-    return HttpResponse("Hello, world. You're at the root url.")
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/',include('planapp.urls')),
-    path('', root_view),
+    path('',include('planapp.urls')),
+
 ]
