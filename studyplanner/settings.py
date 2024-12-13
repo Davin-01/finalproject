@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # 'rest_framework_simplejwt',
     # 'rest_framework.authtoken',
     # 'corsheaders',
+    'crispy_forms',
     'planapp',
 
 ]
@@ -78,6 +79,7 @@ ROOT_URLCONF = 'studyplanner.urls'
 #     )
 # }
 
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 
 TEMPLATES = [
@@ -98,7 +100,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'studyplanner.wsgi.application'
 
-LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/home'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

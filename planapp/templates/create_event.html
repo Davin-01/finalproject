@@ -17,20 +17,13 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <h1>Create Event for {{ plan.name }}</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <label for="title">Event Title:</label>
-        <input type="text" name="title" required>
-        
-        <label for="description">Description:</label>
-        <textarea name="description"></textarea>
-        
-        <label for="event_date">Event Date:</label>
-        <input type="datetime-local" name="event_date" required>
-        
-        <button type="submit">Create Event</button>
-    </form>
-    <a href="{% url 'home' %}">Back to Home</a>
+  <h1>Create an Event for {{ plan.name }}</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create Event</button>
+</form>
+<a href="{% url 'home' %}">Back to Home</a>
+
 </body>
 </html>

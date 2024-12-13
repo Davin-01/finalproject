@@ -4,26 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Plan</title>
+    <title>Edit Plan</title>
     <link rel="stylesheet" href="{% static 'css/plan.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main>
-        <header>
-            <h1>Create a New Plan</h1>
-        </header>
+    <header>
+        <h1>Edit Plan: {{ plan.name }}</h1>
+        <a href="{% url 'home' %}" class="back-link">Back to Home</a>
+    </header>
 
+    <main>
         <form method="POST">
             {% csrf_token %}
             
-            <!-- Display error messages -->
-            {% if messages %}
-                <ul class="messages">
-                    {% for message in messages %}
-                        <li class="{{ message.tags }}">{{ message }}</li>
-                    {% endfor %}
-                </ul>
+            <!-- Form Errors -->
+            {% if form.errors %}
+                <div class="form-errors">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
 
             <!-- Form Fields -->
@@ -41,10 +45,8 @@
                 </div>
             {% endfor %}
 
-            <button type="submit">Create Plan</button>
+            <button type="submit">Update Plan</button>
         </form>
-
-        <a href="{% url 'home' %}" class="back-link">Back to Home</a>
     </main>
 </body>
 </html>

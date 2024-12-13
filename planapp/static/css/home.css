@@ -1,0 +1,129 @@
+/* General styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+}
+
+h1 {
+    margin: 0;
+}
+
+.logout-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.logout-button:hover {
+    background-color: #e53935;
+}
+
+.cta-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.cta-button:hover {
+    background-color: #45a049;
+}
+
+.plans-list {
+    margin-top: 20px;
+}
+
+.plans-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.plan-item {
+    background-color: white;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.plan-actions {
+    margin-top: 10px;
+}
+
+.action-button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.edit {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.edit:hover {
+    background-color: #45a049;
+}
+
+.archive {
+    background-color: #f44336;
+    color: white;
+}
+
+.archive:hover {
+    background-color: #e53935;
+}
+
+.no-plans-message {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .logout-button {
+        top: 10px;
+        right: 10px;
+        font-size: 14px;
+    }
+
+    .cta-button {
+        font-size: 14px;
+    }
+
+    .plan-item {
+        padding: 15px;
+    }
+
+    .plan-actions {
+        display: block;
+        margin-top: 15px;
+    }
+
+    .action-button {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
